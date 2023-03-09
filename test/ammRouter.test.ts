@@ -156,15 +156,13 @@ describe('Osmosis Router Tests', () => {
 		// routeb = "osmo:atom:stable"
 		const osmoDenom = 'osmo'
 		const atomDenom = 'atom'
-		const shitDenom = 'shit'
 		const hex = 'hex'
 		const stableDenom = 'stable'
 		const pools = [
 			generateRandomPool([generateRandomPoolAsset(osmoDenom), generateRandomPoolAsset(atomDenom)]),
 			generateRandomPool(),
-			generateRandomPool([generateRandomPoolAsset(atomDenom), generateRandomPoolAsset(shitDenom)]),
+			generateRandomPool([generateRandomPoolAsset(osmoDenom), generateRandomPoolAsset(hex)]),
 			generateRandomPool(),
-			generateRandomPool([generateRandomPoolAsset(shitDenom), generateRandomPoolAsset(hex)]),
 			generateRandomPool(),
 			generateRandomPool([generateRandomPoolAsset(hex), generateRandomPoolAsset(stableDenom)]),
 			generateRandomPool(),
@@ -179,7 +177,6 @@ describe('Osmosis Router Tests', () => {
 		router.setPools(pools, defaultConverter)
 
 		const routes = router.getRoutes(osmoDenom, stableDenom)
-
 		expect(routes.length).toBe(2)
 	})
 

@@ -146,7 +146,7 @@ export class AMMRouter implements AMMRouterInterface {
 	): RouteHop[][] {
 		// we don't want to search through the same pools again and loop, so we delete filter pools that
 		// exist in the route
-		const usedPools = this.findUsedPools(route)
+		const usedPoolIds : Long[] = this.findUsedPools(route)
 
 		// all pairs that have our sell asset, and are not previously in our route
 		const possibleStartingPairs = pools.filter((pool) => {
@@ -156,7 +156,7 @@ export class AMMRouter implements AMMRouterInterface {
 				(pool.poolAssets[BASE_ASSET_INDEX].token.denom === tokenInDenom ||
 					pool.poolAssets[QUOTE_ASSET_INDEX].token.denom === tokenInDenom) &&
 				// ensure we don't use the same pools
-				usedPools.find((poolId) => pool.id === poolId) === undefined
+				usedPoolIds.find((poolId) => pool.id === poolId) === undefined
 			)
 		})
 
@@ -172,7 +172,6 @@ export class AMMRouter implements AMMRouterInterface {
 				pool.poolAssets[QUOTE_ASSET_INDEX].token.denom === targetTokenOutDenom,
 		)
 
-		// console.log(`endingPairs: ${endingPairs.length}`)
 		if (endingPairs.length > 0 && tokenInDenom !== targetTokenOutDenom) {
 			endingPairs.forEach((pool) => {
 				const hop: RouteHop = {
@@ -200,6 +199,7 @@ export class AMMRouter implements AMMRouterInterface {
 
 			// return routes
 		} else {
+
 			// Else, we have not found the route. Iterate recursively through the pools building valid routes.
 			possibleStartingPairs.forEach((pool) => {
 				const base = pool.poolAssets[BASE_ASSET_INDEX]
@@ -232,6 +232,7 @@ export class AMMRouter implements AMMRouterInterface {
 				)
 			})
 		}
+
 		return routes
 	}
 }
