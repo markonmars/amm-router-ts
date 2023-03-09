@@ -1,0 +1,38 @@
+{
+	"name": "amm-router-ts",
+	"version": "1.0.0",
+	"description": "Toolkit for finding the most efficient routes through amm pools",
+	"main": "./build/ammRouter.js",
+	"author": "Mark Watney",
+	"license": "MIT",
+	"scripts": {
+		"build": "tsc",
+		"test": "jest",
+		"lint": "yarn format-check && eslint . && yarn build",
+		"format": "prettier --write .",
+		"format-check": "prettier --ignore-path .gitignore --check ."
+	},
+	"dependencies": {
+		"@cosmjs/amino": "^0.29.5",
+		"bignumber": "^1.1.0",
+		"bignumber.js": "^9.1.0",
+		"lodash": "^4.17.21",
+		"long": "^5.2.1",
+		"ts-node": "^10.9.1"
+	},
+	"devDependencies": {
+		"@babel/core": "^7.21.0",
+		"@babel/preset-env": "^7.20.2",
+		"@babel/preset-typescript": "^7.21.0",
+		"@types/jest": "^29.2.6",
+		"@types/lodash": "^4.14.191",
+		"@typescript-eslint/eslint-plugin": "^5.48.2",
+		"@typescript-eslint/parser": "^5.48.2",
+		"babel-jest": "^29.4.3",
+		"eslint": "^8.32.0",
+		"eslint-config-prettier": "^8.6.0",
+		"jest": "^29.3.1",
+		"prettier": "^2.8.3",
+		"typescript": "^4.9.4"
+	}
+}
