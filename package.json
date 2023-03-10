@@ -1,6 +1,6 @@
 {
 	"name": "amm-router-ts",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "Toolkit for finding the most efficient routes through amm pools",
 	"main": "./build/ammRouter.js",
 	"author": "Mark Watney",
